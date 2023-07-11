@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/view/components/quiz_background.dart';
 
 class Questions extends StatefulWidget {
   const Questions({super.key});
@@ -10,6 +11,9 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Question screen");
+    return const QuizBackground(
+        child: Center(
+      child: Text("Questions Screen"),
+    ));
   }
 }
