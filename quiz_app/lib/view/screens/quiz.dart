@@ -10,18 +10,22 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  late Widget activeScreen = Home(onPressed: switchScreen);
+  var activeScreen = "home-screen";
 
   void switchScreen() {
     setState(() {
-      activeScreen = const Questions();
+      activeScreen = "questions-screen";
     });
   }
 
   @override
   Widget build(context) {
+    final screenWidget = activeScreen == "home-screen"
+        ? Home(onPressed: switchScreen)
+        : const Questions();
+
     return MaterialApp(
-      home: activeScreen,
+      home: screenWidget,
     );
   }
 }
