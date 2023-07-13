@@ -16,6 +16,7 @@ class QuizBackground extends StatelessWidget {
         ),
       ),
       body: Container(
+          padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,

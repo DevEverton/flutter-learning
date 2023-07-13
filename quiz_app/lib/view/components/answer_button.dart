@@ -7,20 +7,22 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return FilledButton(
-      onPressed: onPressed,
-      style: const ButtonStyle(
-        padding: MaterialStatePropertyAll(
-          EdgeInsets.all(12),
+    return Container(
+      margin: const EdgeInsets.all(8),
+      child: FilledButton(
+        onPressed: onPressed,
+        style: const ButtonStyle(
+          padding: MaterialStatePropertyAll(
+            EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+          ),
+          backgroundColor: MaterialStatePropertyAll(Colors.black),
         ),
-        fixedSize: MaterialStatePropertyAll(Size(320, 60)),
-        backgroundColor: MaterialStatePropertyAll(Colors.black),
-      ),
-      child: Text(
-        textAlign: TextAlign.center,
-        text,
-        style: const TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        child: Text(
+          textAlign: TextAlign.center,
+          text,
+          style: const TextStyle(
+              color: Colors.white, fontWeight: FontWeight.normal, fontSize: 16),
+        ),
       ),
     );
   }

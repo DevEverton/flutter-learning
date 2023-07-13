@@ -12,11 +12,11 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
-  var questionNumber = 0;
+  var currenQuestionIndex = 0;
 
   void nextQuestion() {
     setState(() {
-      questionNumber++;
+      currenQuestionIndex++;
     });
   }
 
@@ -33,24 +33,28 @@ class _QuestionsState extends State<Questions> {
 
   @override
   Widget build(BuildContext context) {
-    var question = questionsMock[questionNumber];
+    var question = questionsMock[currenQuestionIndex];
 
     return QuizBackground(
-      child: Center(
+      child: SizedBox(
+        width: double.infinity,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-                Text(
-                  textAlign: TextAlign.center,
-                  question.text,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
-                ),
-                const SizedBox(height: 16)
-              ] +
-              buildButtons(question),
+            Text(
+              textAlign: TextAlign.center,
+              question.text,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+            const SizedBox(height: 16),
+            ...question.getShuffledAnswers().map((answer) {
+              return AnswerButton(text: answer, onPressed: nextQuestion);
+            }),
+          ],
         ),
       ),
     );
