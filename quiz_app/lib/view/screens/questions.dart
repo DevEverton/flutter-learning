@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/model/question.dart';
 import 'package:quiz_app/view/components/quiz_background.dart';
-import '../components/answer_button.dart';
+import 'package:quiz_app/view/components/answer_button.dart';
 import 'package:quiz_app/mock/questions_mock.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Questions extends StatefulWidget {
   const Questions({super.key});
@@ -45,10 +46,10 @@ class _QuestionsState extends State<Questions> {
             Text(
               textAlign: TextAlign.center,
               question.text,
-              style: const TextStyle(
+              style: GoogleFonts.lato(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             ...question.getShuffledAnswers().map((answer) {

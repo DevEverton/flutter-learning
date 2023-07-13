@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../View/Components/quiz_button.dart';
 import '../components/quiz_background.dart';
 import '../components/quiz_image.dart';
@@ -20,10 +21,10 @@ class Home extends StatelessWidget {
           const SizedBox(
             height: 60,
           ),
-          const Text(
+          Text(
             "Learn Flutter the fun way!",
-            style: TextStyle(
-                color: Colors.white, fontSize: 24, fontWeight: FontWeight.w400),
+            style: GoogleFonts.lato(
+                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 32),
           QuizButton(onPressed: onPressed, text: "Start quiz")

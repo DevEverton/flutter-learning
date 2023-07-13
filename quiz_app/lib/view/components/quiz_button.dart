@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuizButton extends StatelessWidget {
   final Function() onPressed;
@@ -14,7 +15,8 @@ class QuizButton extends StatelessWidget {
       },
       label: Text(
         text,
-        style: const TextStyle(color: Colors.white),
+        style: GoogleFonts.lato(
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
       ),
       icon: const Icon(
         Icons.arrow_right_alt,
