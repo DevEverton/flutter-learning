@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/view/screens/results.dart';
 import 'home.dart';
 import 'questions.dart';
 
@@ -21,23 +22,28 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
-      activeScreen = Screens.questions;
-    });
-  }
-
-  void chooseAnswer(String answer) {
-    setState(() {
-      selectedAnswers.add(answer);
+      activeScreen =
+          selectedAnswers.isEmpty ? Screens.questions : Screens.result;
     });
   }
 
   @override
   Widget build(context) {
-    final screenWidget = activeScreen == Screens.home
-        ? Home(onPressed: switchScreen)
-        : Questions(answers: (answers) {
-            selectedAnswers = answers;
-          });
+    Widget screenWidget;
+    switch (activeScreen) {
+      case Screens.questions:
+        screenWidget = Questions(didFinishSelectAllAnswers: (answers) {
+          selectedAnswers = answers;
+          switchScreen();
+        });
+        break;
+      case Screens.result:
+        screenWidget = const Results(resultText: "25");
+        break;
+      default:
+        screenWidget = Home(onPressed: switchScreen);
+        break;
+    }
 
     return MaterialApp(
       home: screenWidget,

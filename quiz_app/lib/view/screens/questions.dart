@@ -6,36 +6,34 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/view/screens/results.dart';
 
 class Questions extends StatefulWidget {
-  final Function(List<String> answers) answers;
-  const Questions({super.key, required this.answers});
+  final Function(List<String> answers) didFinishSelectAllAnswers;
+  const Questions({super.key, required this.didFinishSelectAllAnswers});
 
   @override
-  State<Questions> createState() => _QuestionsState(answers);
+  State<Questions> createState() => _QuestionsState();
 }
 
 class _QuestionsState extends State<Questions> {
   final List<String> selectedAnswers = [];
-  final Function(List<String> answers) answers;
   var currenQuestionIndex = 0;
 
-  _QuestionsState(this.answers);
-
-  void choosedAnswer(String answer) {
+  void goNextQuestion() {
     setState(() {
-      selectedAnswers.add(answer);
       currenQuestionIndex++;
     });
   }
 
+  void answerHandler(String answer) {
+    selectedAnswers.add(answer);
+    if (currenQuestionIndex >= questionsMock.length - 1) {
+      widget.didFinishSelectAllAnswers(selectedAnswers);
+    } else {
+      goNextQuestion();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (currenQuestionIndex >
-        questionsMock[currenQuestionIndex].answers.length) {
-      answers(selectedAnswers);
-      return const Results(
-        resultText: '15',
-      );
-    }
     var question = questionsMock[currenQuestionIndex];
 
     return QuizBackground(
@@ -58,7 +56,7 @@ class _QuestionsState extends State<Questions> {
               return AnswerButton(
                   text: answer,
                   onPressed: () {
-                    choosedAnswer(answer);
+                    answerHandler(answer);
                   });
             }),
           ],
