@@ -3,7 +3,6 @@ import 'package:quiz_app/view/components/quiz_background.dart';
 import 'package:quiz_app/view/components/answer_button.dart';
 import 'package:quiz_app/mock/questions_mock.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/view/screens/results.dart';
 
 class Questions extends StatefulWidget {
   final Function(List<String> answers) didFinishSelectAllAnswers;

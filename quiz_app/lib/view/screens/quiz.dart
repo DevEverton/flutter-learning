@@ -22,8 +22,12 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
-      activeScreen =
-          selectedAnswers.isEmpty ? Screens.questions : Screens.result;
+      if (activeScreen == Screens.result) {
+        activeScreen = Screens.home;
+      } else {
+        activeScreen =
+            selectedAnswers.isEmpty ? Screens.questions : Screens.result;
+      }
     });
   }
 
@@ -38,7 +42,13 @@ class _QuizState extends State<Quiz> {
         });
         break;
       case Screens.result:
-        screenWidget = const Results(resultText: "25");
+        screenWidget = Results(
+          didTapRestart: () {
+            selectedAnswers = [];
+            switchScreen();
+          },
+          selectedAnswers: selectedAnswers,
+        );
         break;
       default:
         screenWidget = Home(onPressed: switchScreen);
