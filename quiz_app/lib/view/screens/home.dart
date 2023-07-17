@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../View/Components/quiz_button.dart';
-import '../components/quiz_background.dart';
+import 'package:quiz_app/view/components/quiz_button.dart';
+import 'package:quiz_app/view/components/quiz_background.dart';
 import '../components/quiz_image.dart';
 
 class Home extends StatelessWidget {
@@ -27,7 +27,12 @@ class Home extends StatelessWidget {
                 color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 32),
-          QuizButton(onPressed: onPressed, text: "Start quiz")
+          // QuizButton(onPressed: onPressed, text: "Start quiz")
+          QuizButton(
+            onPressed: onPressed,
+            text: "Start quiz",
+            iconData: Icons.arrow_right_alt,
+          )
         ]),
       ),
     );
