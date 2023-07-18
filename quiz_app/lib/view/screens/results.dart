@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/view/components/questions_summary.dart';
 import 'package:quiz_app/view/components/quiz_background.dart';
 import 'package:quiz_app/view/components/quiz_button.dart';
 import 'package:quiz_app/mock/questions_mock.dart';
@@ -59,34 +60,8 @@ class Results extends StatelessWidget {
           onPressed: didTapRestart,
           text: "Restart",
           iconData: Icons.restart_alt,
-        )
+        ),
       ]),
     ));
-  }
-}
-
-class QuestionsSummary extends StatelessWidget {
-  final List<Map<String, Object>> summaryData;
-
-  const QuestionsSummary({super.key, required this.summaryData});
-
-  @override
-  Widget build(context) {
-    return Column(
-      children: summaryData.map((data) {
-        return Row(mainAxisSize: MainAxisSize.min, children: [
-          Text(((data["question_index"] as int) + 1).toString()),
-          Expanded(
-            child: Column(
-              children: [
-                Text((data["question"] as String)),
-                Text((data["correct_answer"] as String)),
-                Text((data["user_answer"] as String))
-              ],
-            ),
-          )
-        ]);
-      }).toList(),
-    );
   }
 }
