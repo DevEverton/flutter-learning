@@ -11,7 +11,7 @@ class Results extends StatelessWidget {
   const Results(
       {super.key, required this.didTapRestart, required this.selectedAnswers});
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < selectedAnswers.length; i++) {
@@ -25,18 +25,16 @@ class Results extends StatelessWidget {
     return summary;
   }
 
-  (int, int) getResult() {
-    var summary = getSummaryData();
-    var numberOfCorrectAnswers = summary
+  (int, int) get result {
+    var numberOfCorrectAnswers = summaryData
         .where((element) => element['correct_answer'] == element['user_answer'])
         .length;
 
-    return (numberOfCorrectAnswers, summary.length);
+    return (numberOfCorrectAnswers, summaryData.length);
   }
 
   @override
   Widget build(context) {
-    (int, int) result = getResult();
     int correctAnswers = result.$1;
     int totalAnswers = result.$2;
 
@@ -52,7 +50,7 @@ class Results extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        QuestionsSummary(summaryData: getSummaryData()),
+        QuestionsSummary(summaryData: summaryData),
         const SizedBox(
           height: 30,
         ),
